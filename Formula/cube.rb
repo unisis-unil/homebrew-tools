@@ -1,25 +1,25 @@
 class Cube < Formula
   desc "CLI pour interroger les cubes SQLite UNISIS S3 (Statistiques en Self-Service)"
   homepage "https://github.com/unisis-unil/cube-cli"
-  version "1.0.7"
+  version "1.0.8"
   license "MIT"
 
   on_macos do
     on_intel do
-      url "https://github.com/unisis-unil/cube-cli/releases/download/v1.0.7/cube-x86_64-apple-darwin.tar.gz"
-      sha256 "918468516da56d668697cf5fc26b6112036f6da9faf48489b493e1766b75fe16"
+      url "https://github.com/unisis-unil/cube-cli/releases/download/v1.0.8/cube-x86_64-apple-darwin.tar.gz"
+      sha256 "7e2c6b1d05989e50cb071f7f586b7644ee0e54fa0bc770d403af6bf8aa4d0d5d"
     end
 
     on_arm do
-      url "https://github.com/unisis-unil/cube-cli/releases/download/v1.0.7/cube-aarch64-apple-darwin.tar.gz"
-      sha256 "31b64fc43686201ae1c38cb598a18aa23a5b8d99d4ec3a60227db8c08ff8a7a5"
+      url "https://github.com/unisis-unil/cube-cli/releases/download/v1.0.8/cube-aarch64-apple-darwin.tar.gz"
+      sha256 "4ef236fdc53155ded53a204568682000d13596f4b7c99c9dadf07dec4700ffab"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/unisis-unil/cube-cli/releases/download/v1.0.7/cube-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "6969e5c58753f0cc9fb994ea3c9567428ea832404f29c0c2a9eabed33e771664"
+      url "https://github.com/unisis-unil/cube-cli/releases/download/v1.0.8/cube-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "0f1bd75c131280857749cea3197aa645721f481346cad8c7414d24c54a44570a"
     end
   end
 
