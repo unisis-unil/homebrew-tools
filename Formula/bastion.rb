@@ -3,8 +3,8 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible/releases/download/v0.1.0/bastion_cli-0.1.0.tar.gz", using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+  url "https://github.com/unisis-unil/bastion-ansible/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "fe2e649f9657763ac57930e572f3b2b3aa5dceb4010718b26dc4303f83bfdd81"
   license "MIT"
 
   depends_on "python@3.12"
@@ -35,7 +35,9 @@ class Bastion < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    cd "cli" do
+      virtualenv_install_with_resources
+    end
   end
 
   test do
