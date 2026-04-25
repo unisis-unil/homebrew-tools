@@ -3,10 +3,12 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.1.3", revision: "c76b380442edf99c788fa7a42f4f80464f75dcd6"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.1.4", revision: "f758bcb016b61cbb4c7bb23cca9cd18677c53e50"
   license "MIT"
 
   depends_on "python@3.12"
+  depends_on "caddy" => :recommended
+  depends_on cask: "gcloud-cli"
 
   resource "click" do
     url "https://files.pythonhosted.org/packages/bb/63/f9e1ea081ce35720d8b92acde70daaedace594dc93b693c869e0d5910718/click-8.3.3.tar.gz"
@@ -41,6 +43,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.1.3", shell_output("#{bin}/bastion --version")
+    assert_match "0.1.4", shell_output("#{bin}/bastion --version")
   end
 end
