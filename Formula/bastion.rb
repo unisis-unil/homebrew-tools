@@ -3,8 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "fe2e649f9657763ac57930e572f3b2b3aa5dceb4010718b26dc4303f83bfdd81"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.1.0", revision: "699a49d96ffff338f564eeb62f4adf28ceb8a71d"
   license "MIT"
 
   depends_on "python@3.12"
