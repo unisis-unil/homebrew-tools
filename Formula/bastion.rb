@@ -37,7 +37,7 @@ class Bastion < Formula
     venv = virtualenv_create(libexec, "python3.12")
     venv.pip_install resources
     venv.pip_install buildpath/"cli"
-    (bin/"bastion").write_env_script libexec/"bin/bastion", PATH: "#{libexec}/bin:$PATH"
+    bin.install_symlink libexec/"bin/bastion"
   end
 
   test do
