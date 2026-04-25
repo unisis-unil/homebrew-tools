@@ -34,9 +34,9 @@ class Bastion < Formula
   end
 
   def install
-    cd "cli" do
-      virtualenv_install_with_resources
-    end
+    venv = virtualenv_create(libexec, "python3.12")
+    venv.pip_install resources
+    venv.pip_install buildpath/"cli"
   end
 
   test do
