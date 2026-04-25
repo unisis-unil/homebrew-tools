@@ -3,7 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.1.4", revision: "4bd3b1d8e0cbec4866eed504dbde31af328c30ff"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.1.5", revision: "01fca6cd26e2d71469a692b2a0d1bacca86f423f"
   license "MIT"
 
   depends_on "python@3.12"
@@ -43,7 +43,20 @@ class Bastion < Formula
     bin.install_symlink libexec/"bin/bastion"
   end
 
+  def caveats
+    <<~EOS
+      To get started:
+        bastion setup
+
+      For LLM agent integration (Claude Code, etc.):
+        bastion skill-install
+
+      Google Cloud CLI is also required (not installed by this formula):
+        brew install --cask gcloud-cli
+    EOS
+  end
+
   test do
-    assert_match "0.1.4", shell_output("#{bin}/bastion --version")
+    assert_match "0.1.5", shell_output("#{bin}/bastion --version")
   end
 end
