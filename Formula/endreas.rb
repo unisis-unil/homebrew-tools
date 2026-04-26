@@ -3,10 +3,11 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.1.0", revision: "be7f86ef2cf7b6e99e12aa983efeb46b1cd9c48c"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.1.2", revision: "d5e48915dec062127796ecdd1507031f581c12e7"
   license "MIT"
 
   depends_on "python@3.12"
+  depends_on "rust" => :build
   # docker, kubectl, devspace are runtime dependencies but are not
   # Homebrew formulae we want to force on every user (some prefer
   # Docker Desktop as a cask). Documented in caveats instead.
@@ -71,6 +72,11 @@ class Endreas < Formula
     sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
   end
 
+  resource "maturin" do
+    url "https://files.pythonhosted.org/packages/39/16/b284a7bc4af3dd87717c784278c1b8cb18606ad1f6f7a671c47bfd9c3df0/maturin-1.13.1.tar.gz"
+    sha256 "9a87ff3b8e4d1c6eac33ebfe8e261e8236516d98d45c0323550621819b5a1a2f"
+  end
+
   def install
     venv = virtualenv_create(libexec, "python3.12")
     venv.pip_install resources
@@ -98,6 +104,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.1.0", shell_output("#{bin}/endreas --version")
+    assert_match "0.1.2", shell_output("#{bin}/endreas --version")
   end
 end
