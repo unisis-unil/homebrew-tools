@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.5.0", revision: "cba5f5d288279718702cd4da1c7fed9f59b74aa2"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.5.1", revision: "06a0dd94f45b245ce8009c26a5cc9122027bade6"
   license "MIT"
 
   depends_on "python@3.12"
@@ -104,6 +104,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.5.0", shell_output("#{bin}/endreas --version")
+    assert_match "0.5.1", shell_output("#{bin}/endreas --version")
   end
 end
