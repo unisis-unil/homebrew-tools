@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.9.4", revision: "e77aa263d4f6cbfcfcb5b828df60feafd43293f6"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.10.0", revision: "0fc85b3747bb5455c0c914d51bc3b795e29406a8"
   license "MIT"
 
   depends_on "python@3.12"
@@ -23,13 +23,13 @@ class Endreas < Formula
   end
 
   resource "pydantic" do
-    url "https://files.pythonhosted.org/packages/d9/e4/40d09941a2cebcb20609b86a559817d5b9291c49dd6f8c87e5feffbe703a/pydantic-2.13.3.tar.gz"
-    sha256 "af09e9d1d09f4e7fe37145c1f577e1d61ceb9a41924bf0094a36506285d0a84d"
+    url "https://files.pythonhosted.org/packages/18/a5/b60d21ac674192f8ab0ba4e9fd860690f9b4a6e51ca5df118733b487d8d6/pydantic-2.13.4.tar.gz"
+    sha256 "c40756b57adaa8b1efeeced5c196f3f3b7c435f90e84ea7f443901bec8099ef6"
   end
 
   resource "pydantic-core" do
-    url "https://files.pythonhosted.org/packages/2a/ef/f7abb56c49382a246fd2ce9c799691e3c3e7175ec74b14d99e798bcddb1a/pydantic_core-2.46.3.tar.gz"
-    sha256 "41c178f65b8c29807239d47e6050262eb6bf84eb695e41101e62e38df4a5bc2c"
+    url "https://files.pythonhosted.org/packages/9d/56/921726b776ace8d8f5db44c4ef961006580d91dc52b803c489fafd1aa249/pydantic_core-2.46.4.tar.gz"
+    sha256 "62f875393d7f270851f20523dd2e29f082bcc82292d66db2b64ea71f64b6e1c1"
   end
 
   resource "annotated-types" do
@@ -58,8 +58,8 @@ class Endreas < Formula
   end
 
   resource "markdown-it-py" do
-    url "https://files.pythonhosted.org/packages/5b/f5/4ec618ed16cc4f8fb3b701563655a69816155e79e24a17b651541804721d/markdown_it_py-4.0.0.tar.gz"
-    sha256 "cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3"
+    url "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz"
+    sha256 "04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49"
   end
 
   resource "mdurl" do
@@ -104,6 +104,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.9.4", shell_output("#{bin}/endreas --version")
+    assert_match "0.10.0", shell_output("#{bin}/endreas --version")
   end
 end
