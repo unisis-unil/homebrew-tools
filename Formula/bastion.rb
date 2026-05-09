@@ -3,7 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.5", revision: "9572e566ddee1e980f720b38bf6d31e4a66fa21e"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.7", revision: "63800eddb3b57638f5fa34cccfe83d54bfc8db74"
   license "MIT"
 
   depends_on "python@3.12"
@@ -22,8 +22,8 @@ class Bastion < Formula
   end
 
   resource "markdown-it-py" do
-    url "https://files.pythonhosted.org/packages/5b/f5/4ec618ed16cc4f8fb3b701563655a69816155e79e24a17b651541804721d/markdown_it_py-4.0.0.tar.gz"
-    sha256 "cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3"
+    url "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz"
+    sha256 "04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49"
   end
 
   resource "mdurl" do
@@ -57,6 +57,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.8.5", shell_output("#{bin}/bastion --version")
+    assert_match "0.8.7", shell_output("#{bin}/bastion --version")
   end
 end
