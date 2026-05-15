@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.4", revision: "84c306ed69ce6d4aa5118f53849d279362de155c"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.5", revision: "7479f22e3b5e751711b5773f8267ea45a97e24ae"
   license "MIT"
 
   depends_on "python@3.12"
@@ -79,12 +79,20 @@ class Endreas < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
-    # Bootstrap pip (venv created --without-pip) then upgrade to >= 24.3
-    # so Homebrew 5.x's --uploaded-prior-to flag is recognised.
+    # Bootstrap and upgrade pip inside the venv so that we bypass
+    # Homebrew 5.x's --uploaded-prior-to flag, which requires pip >= 24.3
+    # but python@3.12 ships pip 24.2. We install resources and the package
+    # directly via the venv pip to avoid the Language::Python::Virtualenv
+    # helper that calls the system python3.12 -m pip and re-injects the flag.
     system libexec/"bin/python3.12", "-m", "ensurepip"
     system libexec/"bin/python3.12", "-m", "pip", "install", "--upgrade", "pip"
-    venv.pip_install resources
-    venv.pip_install buildpath
+    pip = libexec/"bin/pip"
+    resources.each do |r|
+      r.stage do
+        system pip, "install", "--no-deps", "--no-binary", ":all:", "."
+      end
+    end
+    system pip, "install", "--no-deps", buildpath
     bin.install_symlink libexec/"bin/endreas"
   end
 
@@ -108,6 +116,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.13.4", shell_output("#{bin}/endreas --version")
+    assert_match "0.13.5", shell_output("#{bin}/endreas --version")
   end
 end
