@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.2", revision: "7bdc7c5c9f471b2f8edd0138010989cffb053360"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.3", revision: "d553643f7c70318b37fcd704c7cfa83ac17ae58c"
   license "MIT"
 
   depends_on "python@3.12"
@@ -79,6 +79,8 @@ class Endreas < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
+    # Upgrade pip so Homebrew's --uploaded-prior-to flag is recognised (requires pip >= 24.3).
+    system libexec/"bin/pip", "install", "--upgrade", "pip"
     venv.pip_install resources
     venv.pip_install buildpath
     bin.install_symlink libexec/"bin/endreas"
@@ -104,6 +106,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.13.2", shell_output("#{bin}/endreas --version")
+    assert_match "0.13.3", shell_output("#{bin}/endreas --version")
   end
 end
