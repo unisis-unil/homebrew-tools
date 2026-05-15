@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.0", revision: "46847033a2867e57c24b3c6662d5fb61e119659b"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.1", revision: "778a80e678f203ca8d5900e3941e1dddf4597bd0"
   license "MIT"
 
   depends_on "python@3.12"
@@ -73,8 +73,8 @@ class Endreas < Formula
   end
 
   resource "maturin" do
-    url "https://files.pythonhosted.org/packages/39/16/b284a7bc4af3dd87717c784278c1b8cb18606ad1f6f7a671c47bfd9c3df0/maturin-1.13.1.tar.gz"
-    sha256 "9a87ff3b8e4d1c6eac33ebfe8e261e8236516d98d45c0323550621819b5a1a2f"
+    url "https://files.pythonhosted.org/packages/9c/1c/612d23d33ec21b9ae7ece7b3f0dd5f9dfd57b4009e9d2938165869ebd6ae/maturin-1.13.3.tar.gz"
+    sha256 "771e1e9e71a278e56db01552e0d1acfd1464259f9575b6e72842f893cd299079"
   end
 
   def install
@@ -104,6 +104,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.13.0", shell_output("#{bin}/endreas --version")
+    assert_match "0.13.1", shell_output("#{bin}/endreas --version")
   end
 end
