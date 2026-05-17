@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.5", revision: "7479f22e3b5e751711b5773f8267ea45a97e24ae"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.13.6", revision: "eda25c236d12033078f0fd9da2fe6bffa840276f"
   license "MIT"
 
   depends_on "python@3.12"
@@ -13,8 +13,8 @@ class Endreas < Formula
   # Docker Desktop as a cask). Documented in caveats instead.
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/bb/63/f9e1ea081ce35720d8b92acde70daaedace594dc93b693c869e0d5910718/click-8.3.3.tar.gz"
-    sha256 "398329ad4837b2ff7cbe1dd166a4c0f8900c3ca3a218de04466f38f6497f18a2"
+    url "https://files.pythonhosted.org/packages/23/e4/796662cd90cf80e3a363c99db2b88e0e394b988a575f60a17e16440cd011/click-8.4.0.tar.gz"
+    sha256 "638f1338fe1235c8f4e008e4a8a254fb5c5fbdcbb40ece3c9142ebb78e792973"
   end
 
   resource "rich" do
@@ -116,6 +116,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.13.5", shell_output("#{bin}/endreas --version")
+    assert_match "0.13.6", shell_output("#{bin}/endreas --version")
   end
 end
