@@ -3,10 +3,10 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.14.1", revision: "fbe64ff72eb113dd9572c9710b3611a6286f482f"
+  url "https://github.com/unisis-unil/endreas-cli.git", tag: "v0.15.0", revision: "823d3dfeb421922b8cb63d4bff0007a0a1889e02"
   license "MIT"
 
-  depends_on "python@3.12"
+  depends_on "python@3.14"
   depends_on "rust" => :build
   # docker, kubectl, devspace are runtime dependencies but are not
   # Homebrew formulae we want to force on every user (some prefer
@@ -78,21 +78,9 @@ class Endreas < Formula
   end
 
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    # Bootstrap and upgrade pip inside the venv so that we bypass
-    # Homebrew 5.x's --uploaded-prior-to flag, which requires pip >= 24.3
-    # but python@3.12 ships pip 24.2. We install resources and the package
-    # directly via the venv pip to avoid the Language::Python::Virtualenv
-    # helper that calls the system python3.12 -m pip and re-injects the flag.
-    system libexec/"bin/python3.12", "-m", "ensurepip"
-    system libexec/"bin/python3.12", "-m", "pip", "install", "--upgrade", "pip"
-    pip = libexec/"bin/pip"
-    resources.each do |r|
-      r.stage do
-        system pip, "install", "--no-deps", "--no-binary", ":all:", "."
-      end
-    end
-    system pip, "install", "--no-deps", buildpath
+    venv = virtualenv_create(libexec, "python3.14")
+    venv.pip_install resources
+    venv.pip_install buildpath
     bin.install_symlink libexec/"bin/endreas"
   end
 
@@ -116,6 +104,6 @@ class Endreas < Formula
   end
 
   test do
-    assert_match "0.14.1", shell_output("#{bin}/endreas --version")
+    assert_match "0.15.0", shell_output("#{bin}/endreas --version")
   end
 end
