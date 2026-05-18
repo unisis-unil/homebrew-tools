@@ -3,7 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.20", revision: "6ca7d8d60911f70619e708fd1ee50db60d848db7"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.21", revision: "da8de0d279aa385a433ac91406fb44e59bdd47aa"
   license "MIT"
 
   depends_on "python@3.12"
@@ -38,16 +38,20 @@ class Bastion < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
-    # Bootstrap pip into the venv, then upgrade it.
-    # python@3.12 ships pip 24.x but Homebrew 5.1+ passes
-    # --uploaded-prior-to (pip 25+ only) via std_pip_args.
-    # ensurepip installs the bundled pip without network access,
-    # then we upgrade it in-place before handing control back to
-    # venv.pip_install which will use the updated pip.
+    # Bootstrap and upgrade pip inside the venv so that we bypass
+    # Homebrew 5.x's --uploaded-prior-to flag, which requires pip >= 25
+    # but python@3.12 ships pip 24.x. We then call the venv pip directly
+    # to avoid the Language::Python::Virtualenv helper that calls
+    # "python3.12 -m pip --python=..." and re-injects the flag.
     system libexec/"bin/python", "-m", "ensurepip"
-    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "--quiet", "pip"
-    venv.pip_install resources
-    venv.pip_install buildpath/"cli"
+    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
+    pip = libexec/"bin/pip"
+    resources.each do |r|
+      r.stage do
+        system pip, "install", "--no-deps", "--no-binary", ":all:", "."
+      end
+    end
+    system pip, "install", "--no-deps", buildpath/"cli"
     bin.install_symlink libexec/"bin/bastion"
   end
 
@@ -65,6 +69,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.8.20", shell_output("#{bin}/bastion --version")
+    assert_match "0.8.21", shell_output("#{bin}/bastion --version")
   end
 end
