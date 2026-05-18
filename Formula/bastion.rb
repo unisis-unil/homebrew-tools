@@ -3,7 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.16", revision: "825172474fc73e6fa7a685a793ac2918b28df710"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.17", revision: "d431adb719a4def0a7292563afc7c32df550c158"
   license "MIT"
 
   depends_on "python@3.12"
@@ -12,8 +12,8 @@ class Bastion < Formula
   # and cannot be declared as a formula dependency.
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/bb/63/f9e1ea081ce35720d8b92acde70daaedace594dc93b693c869e0d5910718/click-8.3.3.tar.gz"
-    sha256 "398329ad4837b2ff7cbe1dd166a4c0f8900c3ca3a218de04466f38f6497f18a2"
+    url "https://files.pythonhosted.org/packages/23/e4/796662cd90cf80e3a363c99db2b88e0e394b988a575f60a17e16440cd011/click-8.4.0.tar.gz"
+    sha256 "638f1338fe1235c8f4e008e4a8a254fb5c5fbdcbb40ece3c9142ebb78e792973"
   end
 
   resource "rich" do
@@ -57,6 +57,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.8.16", shell_output("#{bin}/bastion --version")
+    assert_match "0.8.17", shell_output("#{bin}/bastion --version")
   end
 end
