@@ -3,10 +3,10 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.8.22", revision: "a103789ede36196a5289db67dd848d89f7a29e9a"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.9.0", revision: "f44469c15f3aa7f4bd456decee89a79cf8c104b0"
   license "MIT"
 
-  depends_on "python@3.12"
+  depends_on "python@3.14"
   depends_on "caddy" => :recommended
   # Note: gcloud-cli is a cask (brew install --cask gcloud-cli)
   # and cannot be declared as a formula dependency.
@@ -37,21 +37,9 @@ class Bastion < Formula
   end
 
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    # Bootstrap and upgrade pip inside the venv so that we bypass
-    # Homebrew 5.x's --uploaded-prior-to flag, which requires pip >= 25
-    # but python@3.12 ships pip 24.x. We then call the venv pip directly
-    # to avoid the Language::Python::Virtualenv helper that calls
-    # "python3.12 -m pip --python=..." and re-injects the flag.
-    system libexec/"bin/python", "-m", "ensurepip"
-    system libexec/"bin/python", "-m", "pip", "install", "--upgrade", "pip"
-    pip = libexec/"bin/pip"
-    resources.each do |r|
-      r.stage do
-        system pip, "install", "--no-deps", "--no-binary", ":all:", "."
-      end
-    end
-    system pip, "install", "--no-deps", buildpath/"cli"
+    venv = virtualenv_create(libexec, "python3.14")
+    venv.pip_install resources
+    venv.pip_install buildpath/"cli"
     bin.install_symlink libexec/"bin/bastion"
   end
 
@@ -69,6 +57,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.8.22", shell_output("#{bin}/bastion --version")
+    assert_match "0.9.0", shell_output("#{bin}/bastion --version")
   end
 end
