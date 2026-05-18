@@ -6,6 +6,12 @@ class Bastion < Formula
   url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.9.2", revision: "9d15867a4513d85bda2fdc2763c09a2ed0de4755"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/unisis-unil/bastion-ansible/releases/download/v0.9.2"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "56b0d30c132a1d405219d1582603ce9ed97ac0e17d32f9892e1f6572aa01a293"
+  end
+
   depends_on "python@3.14"
   depends_on "caddy" => :recommended
   # Note: gcloud-cli is a cask (brew install --cask gcloud-cli)
