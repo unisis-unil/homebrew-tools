@@ -3,17 +3,18 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.9.3", revision: "b55c7d3f4e201be946148ee3fc50eb084e4d6cb3"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.9.4", revision: "4c4657cd5af6b6df5861c4429c686be72375ab9b"
   license "MIT"
 
   depends_on "python@3.14"
-  depends_on "caddy" => :recommended
+  depends_on "autossh"
+  depends_on "caddy"
   # Note: gcloud-cli is a cask (brew install --cask gcloud-cli)
   # and cannot be declared as a formula dependency.
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/23/e4/796662cd90cf80e3a363c99db2b88e0e394b988a575f60a17e16440cd011/click-8.4.0.tar.gz"
-    sha256 "638f1338fe1235c8f4e008e4a8a254fb5c5fbdcbb40ece3c9142ebb78e792973"
+    url "https://files.pythonhosted.org/packages/9b/98/518d8e5081007684232226f475082b30087d0f585e8457db087298259f49/click-8.4.1.tar.gz"
+    sha256 "918b5633eddf6b41c32d4f454bf0de810065c74e3f7dbf8ee5452f8be88d3e96"
   end
 
   resource "rich" do
@@ -57,6 +58,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.9.3", shell_output("#{bin}/bastion --version")
+    assert_match "0.9.4", shell_output("#{bin}/bastion --version")
   end
 end
