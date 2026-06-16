@@ -3,7 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.10.0", revision: "4d812eab36499cb4e7985bff7c8de7a02b2ef195"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.10.1", revision: "2c3c388b528d6d3dd037c7354077be55c2efee90"
   license "MIT"
 
   depends_on "python@3.14"
@@ -58,6 +58,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.10.0", shell_output("#{bin}/bastion --version")
+    assert_match "0.10.1", shell_output("#{bin}/bastion --version")
   end
 end
