@@ -3,7 +3,7 @@ class Bastion < Formula
 
   desc "UNISIS Bastion CLI - SSH tunnels to K3S services at Universite de Lausanne"
   homepage "https://github.com/unisis-unil/bastion-ansible"
-  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.11.0", revision: "62e3420d53b56b7b880b0149bb9a10fd9c07575a"
+  url "https://github.com/unisis-unil/bastion-ansible.git", tag: "v0.12.0", revision: "b433cb01cae3e3ad0207425dbe710e69088fee78"
   license "MIT"
 
   depends_on "python@3.14"
@@ -13,8 +13,8 @@ class Bastion < Formula
   # and cannot be declared as a formula dependency.
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/76/d4/81420972a676e8ffea40450d8c8c92943e7218a78fe9b64359836cc9876b/click-8.4.2.tar.gz"
-    sha256 "9a6cea6e60b17ebe0a44c5cc636d94f09bd66142c1cd7d8b4cd731c4917a15f6"
+    url "https://files.pythonhosted.org/packages/c7/0e/7fa0ef50764b67090eca4114772a2abf8b6148198475e54c660b97caeee6/click-8.5.0.tar.gz"
+    sha256 "ba0d2089de75ea0310e2dde03160e6ca10009947fb95a182f9b54021bb272e34"
   end
 
   resource "rich" do
@@ -33,8 +33,8 @@ class Bastion < Formula
   end
 
   resource "pygments" do
-    url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
-    sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
+    url "https://files.pythonhosted.org/packages/49/2e/ced460408999b33da6b31b0021b0f37d329e202d4169aeb164493778f25b/pygments-2.21.0.tar.gz"
+    sha256 "610ca751c9bc2492b38eb9a38a7fbc93edbbb2d7182edaf34e66ae493dee5c8c"
   end
 
   def install
@@ -58,6 +58,6 @@ class Bastion < Formula
   end
 
   test do
-    assert_match "0.11.0", shell_output("#{bin}/bastion --version")
+    assert_match "0.12.0", shell_output("#{bin}/bastion --version")
   end
 end
