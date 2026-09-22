@@ -3,7 +3,7 @@ class Endreas < Formula
 
   desc "UNISIS ENDREAS CLI - containerized R dev environment on Kubernetes"
   homepage "https://github.com/unisis-unil/endreas-cli"
-  url "git@github.com:unisis-unil/endreas-cli.git", tag: "v0.21.0", revision: "a140c4d3b8a9b7fc620d58334c5c748dc409180c"
+  url "ssh://git@github.com/unisis-unil/endreas-cli.git", tag: "v0.21.0", revision: "a140c4d3b8a9b7fc620d58334c5c748dc409180c"
   license "MIT"
 
   depends_on "python@3.14"
